@@ -11,40 +11,187 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
 	</head>
 	<body>
-		<Header />
-		<main>
-			<h1>🧑‍🚀 Hello, Astronaut!</h1>
-			<p>
-				Welcome to the official <a href="https://astro.build/">Astro</a> blog starter template. This
-				template serves as a lightweight, minimally-styled starting point for anyone looking to build
-				a personal website, blog, or portfolio with Astro.
-			</p>
-			<p>
-				This template comes with a few integrations already configured in your
-				<code>astro.config.mjs</code> file. You can customize your setup with
-				<a href="https://astro.build/integrations">Astro Integrations</a> to add tools like Tailwind,
-				React, or Vue to your project.
-			</p>
-			<p>Here are a few ideas on how to get started with the template:</p>
-			<ul>
-				<li>Edit this page in <code>src/pages/index.astro</code></li>
-				<li>Edit the site header items in <code>src/components/Header.astro</code></li>
-				<li>Add your name to the footer in <code>src/components/Footer.astro</code></li>
-				<li>Check out the included blog posts in <code>src/content/blog/</code></li>
-				<li>Customize the blog post page layout in <code>src/layouts/BlogPost.astro</code></li>
-			</ul>
-			<p>
-				Have fun! If you get stuck, remember to <a href="https://docs.astro.build/"
-					>read the docs
-				</a> or <a href="https://astro.build/chat">join us on Discord</a> to ask questions.
-			</p>
-			<p>
-				Looking for a blog template with a bit more personality? Check out <a
-					href="https://github.com/Charca/astro-blog-template"
-					>astro-blog-template
-				</a> by <a href="https://twitter.com/Charca">Maxi Ferreira</a>.
-			</p>
-		</main>
-		<Footer />
-	</body>
+                <Header />
+                <main>
+                        <p class="eyebrow">Field service platform</p>
+                        <h1>Build your own Jobber-style experience</h1>
+                        <p>
+                                A modern clone of Jobber that keeps quoting, scheduling, dispatching, and invoicing in sync. Use
+                                this starter to launch a service operations hub that feels familiar to technicians and office
+                                staff alike.
+                        </p>
+                        <div class="callouts">
+                                <div>
+                                        <h2>Operate with confidence</h2>
+                                        <ul>
+                                                <li>Smart scheduling with route awareness</li>
+                                                <li>Instant quotes, deposits, and invoicing</li>
+                                                <li>Customer portal for approvals and payments</li>
+                                                <li>Mobile-ready crew updates and checklists</li>
+                                        </ul>
+                                </div>
+                                <div>
+                                        <h2>Implementation playbook</h2>
+                                        <ol>
+                                                <li>Create services, crews, and territories</li>
+                                                <li>Launch booking forms with availability rules</li>
+                                                <li>Automate reminders, follow-ups, and upsells</li>
+                                                <li>Export accounting-ready payouts to your ledger</li>
+                                        </ol>
+                                </div>
+                        </div>
+
+                        <section>
+                                <h2>Feature spotlight</h2>
+                                <div class="grid">
+                                        <div>
+                                                <h3>Scheduling & dispatch</h3>
+                                                <p>
+                                                        Drag-and-drop calendars, map-based routes, and crew capacity controls keep
+                                                        every visit profitable.
+                                                </p>
+                                        </div>
+                                        <div>
+                                                <h3>Quotes, jobs, & invoices</h3>
+                                                <p>
+                                                        Seamless progression from lead to paid invoice with templates for services,
+                                                        materials, and labor rates.
+                                                </p>
+                                        </div>
+                                        <div>
+                                                <h3>Customer experience</h3>
+                                                <p>
+                                                        Branded emails, SMS updates, and a self-serve portal give clients the same
+                                                        polish they expect from Jobber.
+                                                </p>
+                                        </div>
+                                        <div>
+                                                <h3>Team management</h3>
+                                                <p>
+                                                        Permissions, mobile time tracking, and on-site notes keep technicians
+                                                        accountable without adding admin work.
+                                                </p>
+                                        </div>
+                                </div>
+                        </section>
+
+                        <section>
+                                <h2>Built for operators</h2>
+                                <p>
+                                        Whether you're migrating from Jobber or validating a new market, this clone gives you a
+                                        focused blueprint: reliable data models, predictable workflows, and clean interfaces you can
+                                        tailor to your brand.
+                                </p>
+                                <div class="stats">
+                                        <div>
+                                                <p class="stat">5 min</p>
+                                                <p>to launch a booking flow with sample data</p>
+                                        </div>
+                                        <div>
+                                                <p class="stat">3x</p>
+                                                <p>faster quote-to-cash when reminders are enabled</p>
+                                        </div>
+                                        <div>
+                                                <p class="stat">Zero</p>
+                                                <p>code rewrites required to swap payment providers</p>
+                                        </div>
+                                </div>
+                        </section>
+
+                        <section class="cta">
+                                <h2>Launch your Jobber clone today</h2>
+                                <p>
+                                        Start with the provided flows, then layer on integrations for accounting, messaging, and
+                                        analytics without disrupting your crews.
+                                </p>
+                                <div class="actions">
+                                        <a class="button" href="/about">View the implementation notes</a>
+                                        <a class="link" href="/blog">Read the build journal</a>
+                                </div>
+                        </section>
+                </main>
+                <Footer />
+        </body>
 </html>
+<style>
+        main {
+                display: flex;
+                flex-direction: column;
+                gap: 1.5rem;
+        }
+        .eyebrow {
+                text-transform: uppercase;
+                letter-spacing: 0.08em;
+                font-weight: 700;
+                color: var(--accent);
+                margin: 0;
+        }
+        h1 {
+                margin: 0;
+        }
+        .callouts {
+                display: grid;
+                gap: 1rem;
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        }
+        .callouts ul,
+        .callouts ol {
+                margin: 0.5rem 0 0;
+        }
+        section {
+                display: flex;
+                flex-direction: column;
+                gap: 0.75rem;
+        }
+        .grid {
+                display: grid;
+                gap: 1rem;
+                grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        }
+        .grid div,
+        .callouts div,
+        .stats div,
+        .cta {
+                padding: 1rem;
+                border: 1px solid rgba(var(--black), 10%);
+                border-radius: 12px;
+                box-shadow: 0 2px 10px rgba(var(--black), 6%);
+                background: white;
+        }
+        .stats {
+                display: grid;
+                gap: 1rem;
+                grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+                margin-top: 0.5rem;
+        }
+        .stat {
+                font-size: 2rem;
+                font-weight: 800;
+                margin: 0;
+        }
+        .cta {
+                text-align: center;
+        }
+        .actions {
+                display: flex;
+                gap: 0.75rem;
+                justify-content: center;
+                flex-wrap: wrap;
+                margin-top: 0.5rem;
+        }
+        .button,
+        .link {
+                padding: 0.75rem 1.25rem;
+                border-radius: 8px;
+                text-decoration: none;
+                font-weight: 700;
+        }
+        .button {
+                background: var(--accent);
+                color: white;
+        }
+        .link {
+                border: 1px solid rgba(var(--black), 12%);
+                color: var(--black);
+        }
+</style>
