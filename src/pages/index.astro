@@ -7,44 +7,174 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 
 <!doctype html>
 <html lang="en">
-	<head>
-		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-	</head>
-	<body>
-		<Header />
-		<main>
-			<h1>🧑‍🚀 Hello, Astronaut!</h1>
-			<p>
-				Welcome to the official <a href="https://astro.build/">Astro</a> blog starter template. This
-				template serves as a lightweight, minimally-styled starting point for anyone looking to build
-				a personal website, blog, or portfolio with Astro.
-			</p>
-			<p>
-				This template comes with a few integrations already configured in your
-				<code>astro.config.mjs</code> file. You can customize your setup with
-				<a href="https://astro.build/integrations">Astro Integrations</a> to add tools like Tailwind,
-				React, or Vue to your project.
-			</p>
-			<p>Here are a few ideas on how to get started with the template:</p>
-			<ul>
-				<li>Edit this page in <code>src/pages/index.astro</code></li>
-				<li>Edit the site header items in <code>src/components/Header.astro</code></li>
-				<li>Add your name to the footer in <code>src/components/Footer.astro</code></li>
-				<li>Check out the included blog posts in <code>src/content/blog/</code></li>
-				<li>Customize the blog post page layout in <code>src/layouts/BlogPost.astro</code></li>
-			</ul>
-			<p>
-				Have fun! If you get stuck, remember to <a href="https://docs.astro.build/"
-					>read the docs
-				</a> or <a href="https://astro.build/chat">join us on Discord</a> to ask questions.
-			</p>
-			<p>
-				Looking for a blog template with a bit more personality? Check out <a
-					href="https://github.com/Charca/astro-blog-template"
-					>astro-blog-template
-				</a> by <a href="https://twitter.com/Charca">Maxi Ferreira</a>.
-			</p>
-		</main>
-		<Footer />
-	</body>
+        <head>
+                <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+                <style>
+                        main {
+                                display: flex;
+                                flex-direction: column;
+                                gap: 3rem;
+                        }
+                        .hero {
+                                display: grid;
+                                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+                                gap: 2rem;
+                                align-items: center;
+                        }
+                        .pill {
+                                display: inline-flex;
+                                align-items: center;
+                                gap: 0.35rem;
+                                padding: 0.4rem 0.8rem;
+                                border-radius: 999px;
+                                background: rgba(var(--accent), 0.07);
+                                color: rgb(var(--accent));
+                                font-weight: 700;
+                                letter-spacing: 0.01em;
+                        }
+                        .cta-buttons {
+                                display: flex;
+                                gap: 1rem;
+                                flex-wrap: wrap;
+                        }
+                        .cta-buttons a {
+                                text-decoration: none;
+                                padding: 0.75em 1.2em;
+                                border-radius: 999px;
+                                font-weight: 700;
+                                border: 2px solid rgb(var(--accent));
+                        }
+                        .cta-buttons a.primary {
+                                background: rgb(var(--accent));
+                                color: white;
+                        }
+                        .cta-buttons a.secondary {
+                                color: rgb(var(--accent));
+                                background: white;
+                        }
+                        .section-grid {
+                                display: grid;
+                                grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+                                gap: 1.5rem;
+                        }
+                        .card {
+                                border: 1px solid rgba(var(--black), 0.08);
+                                border-radius: 12px;
+                                padding: 1.25rem;
+                                box-shadow: 0 12px 40px rgba(var(--black), 0.04);
+                                background: white;
+                        }
+                        .card h3 {
+                                margin-top: 0;
+                                margin-bottom: 0.5rem;
+                        }
+                        .list {
+                                padding-left: 1.3rem;
+                        }
+                        .list li + li {
+                                margin-top: 0.4rem;
+                        }
+                        .quickstart {
+                                border-radius: 18px;
+                                border: 1px solid rgba(var(--black), 0.08);
+                                padding: 1.5rem;
+                                background: linear-gradient(120deg, rgba(var(--accent), 0.12), white);
+                        }
+                </style>
+        </head>
+        <body>
+                <Header />
+                <main>
+                        <section class="hero">
+                                <div>
+                                        <span class="pill">Sim • Agentic workflows</span>
+                                        <h1>Build and deploy AI agent workflows in minutes</h1>
+                                        <p>
+                                                Sim gives you a visual canvas for chaining agents, tools, and blocks so you can launch
+                                                sophisticated automations fast—no boilerplate required. Copilot keeps you shipping by
+                                                generating nodes, fixing errors, and iterating on flows with natural language.
+                                        </p>
+                                        <div class="cta-buttons">
+                                                <a class="primary" href="https://sim.ai" target="_blank" rel="noreferrer">Try on sim.ai</a>
+                                                <a class="secondary" href="https://docs.sim.ai" target="_blank" rel="noreferrer">Read the docs</a>
+                                        </div>
+                                </div>
+                                <div class="card">
+                                        <h3>Why teams pick Sim</h3>
+                                        <ul class="list">
+                                                <li>Design workflows on a collaborative canvas—connect agents, tools, and system blocks visually.</li>
+                                                <li>Use Copilot to generate new nodes, repair failing steps, and tweak flows directly in the builder.</li>
+                                                <li>Ground answers in your data with built-in vector database uploads and retrieval.</li>
+                                                <li>Deploy to the cloud at <strong>sim.ai</strong> or self-host with a single command when you need control.</li>
+                                        </ul>
+                                </div>
+                        </section>
+
+                        <section>
+                                <h2>Everything you need to launch faster</h2>
+                                <div class="section-grid">
+                                        <article class="card">
+                                                <h3>Visual workflow builder</h3>
+                                                <p>
+                                                        Sketch and run flows immediately by wiring together agents, tools, and reusable blocks on a
+                                                        canvas—perfect for testing ideas before production hardening.
+                                                </p>
+                                        </article>
+                                        <article class="card">
+                                                <h3>Copilot inside the canvas</h3>
+                                                <p>
+                                                        Ask Copilot to add nodes, rewrite prompts, or debug errors. Iterate with plain language instead of
+                                                        spending cycles on boilerplate changes.
+                                                </p>
+                                        </article>
+                                        <article class="card">
+                                                <h3>Grounded knowledge</h3>
+                                                <p>
+                                                        Upload documents to a vector store and let your agents answer questions backed by your content,
+                                                        keeping responses accurate and context-aware.
+                                                </p>
+                                        </article>
+                                        <article class="card">
+                                                <h3>Deploy your way</h3>
+                                                <p>
+                                                        Spin up the hosted experience at sim.ai or self-host with Docker. Sim also supports local models via
+                                                        Ollama or OpenAI-compatible vLLM endpoints when you need to stay on-prem.
+                                                </p>
+                                        </article>
+                                </div>
+                        </section>
+
+                        <section class="quickstart">
+                                <h2>Quickstart</h2>
+                                <p>Get productive in minutes with a hosted workspace or a self-hosted instance.</p>
+                                <div class="section-grid">
+                                        <article class="card">
+                                                <h3>Hosted</h3>
+                                                <p>Head to <a href="https://sim.ai" target="_blank" rel="noreferrer">sim.ai</a> to build flows in the cloud.</p>
+                                                <p>
+                                                        Explore the canvas, connect tools, and invite teammates without configuring any infrastructure.
+                                                </p>
+                                        </article>
+                                        <article class="card">
+                                                <h3>Self-host with npm</h3>
+                                                <p>Requires Docker running locally.</p>
+                                                <pre><code>npx simstudio
+# default: http://localhost:3000</code></pre>
+                                                <p>Use <code>-p</code> or <code>--port</code> to change the port, or <code>--no-pull</code> to skip Docker image updates.</p>
+                                        </article>
+                                        <article class="card">
+                                                <h3>Self-host with Docker Compose</h3>
+                                                <pre><code>git clone https://github.com/simstudioai/sim.git
+cd sim
+docker compose -f docker-compose.prod.yml up -d</code></pre>
+                                                <p>
+                                                        Want local models? Swap in the <code>docker-compose.ollama.yml</code> profiles to run with
+                                                        Ollama and keep inference on your own hardware.
+                                                </p>
+                                        </article>
+                                </div>
+                        </section>
+                </main>
+                <Footer />
+        </body>
 </html>
