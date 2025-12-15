@@ -1,0 +1,421 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+const kpis = [
+        { label: 'Monthly Revenue', value: '$248,900', change: '+12.4% MoM', tone: 'positive' },
+        { label: 'Active Users', value: '18,342', change: '+1,089 this week', tone: 'positive' },
+        { label: 'Support Backlog', value: '32 open', change: '-9 vs. yesterday', tone: 'positive' },
+        { label: 'System Uptime', value: '99.97%', change: 'Past 30 days', tone: 'neutral' },
+];
+
+const releases = [
+        { name: 'Checkout flow refresh', owner: 'Alex Kim', status: 'Shipped', date: 'Jan 12' },
+        { name: 'Analytics alerting', owner: 'Priya Shah', status: 'In QA', date: 'Jan 14' },
+        { name: 'Mobile perf budget', owner: 'Jordan Lee', status: 'Blocked', date: 'Jan 15' },
+];
+
+const incidents = [
+        { id: 'INC-2048', impact: 'Minor', detail: 'Elevated latency on EU edge cluster', owner: 'Ops · Mara', status: 'Monitoring' },
+        { id: 'INC-2049', impact: 'Major', detail: 'Webhook retries failing for Stripe', owner: 'Integrations · Quinn', status: 'In progress' },
+];
+
+const priorities = [
+        { title: 'Stabilize retry queue', owner: 'Backend', eta: '2d', progress: 70 },
+        { title: 'Improve onboarding completion', owner: 'Growth', eta: '5d', progress: 40 },
+        { title: 'Security response playbooks', owner: 'Security', eta: 'Today', progress: 90 },
+];
+---
+
+<!doctype html>
+<html lang="en">
+        <head>
+                <BaseHead title="Yessir Dashboard" description="Operational snapshot for the Yessir product." />
+        </head>
+        <body>
+                <Header />
+                <main class="dashboard">
+                        <header class="dashboard__hero">
+                                <div>
+                                        <p class="eyebrow">Ops snapshot</p>
+                                        <h1>Yessir control dashboard</h1>
+                                        <p class="lede">
+                                                A concise command center for revenue, product delivery, and incident response. Updated live to
+                                                keep teams on the same page.
+                                        </p>
+                                </div>
+                                <div class="hero__meta">
+                                        <p class="hero__status">Status: <strong class="pill pill--healthy">Operational</strong></p>
+                                        <p class="hero__timestamp">Last refreshed: {new Date().toLocaleString('en-US', { dateStyle: 'medium', timeStyle: 'short' })}</p>
+                                </div>
+                        </header>
+
+                        <section class="kpis">
+                                {kpis.map(({ label, value, change, tone }) => (
+                                        <article class:list={[
+                                                'kpi-card',
+                                                tone === 'positive' && 'kpi-card--positive',
+                                                tone === 'neutral' && 'kpi-card--neutral',
+                                        ]}>
+                                                <p class="kpi-card__label">{label}</p>
+                                                <p class="kpi-card__value">{value}</p>
+                                                <p class="kpi-card__change">{change}</p>
+                                        </article>
+                                ))}
+                        </section>
+
+                        <section class="panel-grid">
+                                <article class="panel">
+                                        <div class="panel__header">
+                                                <h2>Release train</h2>
+                                                <span class="badge">Week 3</span>
+                                        </div>
+                                        <div class="list">
+                                                {releases.map((release) => (
+                                                        <div class:list={[
+                                                                'list__item',
+                                                                release.status === 'Blocked' && 'list__item--alert',
+                                                        ]}>
+                                                                <div>
+                                                                        <p class="list__title">{release.name}</p>
+                                                                        <p class="list__meta">{release.owner}</p>
+                                                                </div>
+                                                                <div class="list__status">
+                                                                        <span class:list={[
+                                                                                'pill',
+                                                                                release.status === 'Blocked'
+                                                                                        ? 'pill--alert'
+                                                                                        : release.status === 'In QA'
+                                                                                                ? 'pill--neutral'
+                                                                                                : 'pill--success',
+                                                                        ]}
+                                                                                >{release.status}</span
+                                                                        >
+                                                                        <p class="list__meta">{release.date}</p>
+                                                                </div>
+                                                        </div>
+                                                ))}
+                                        </div>
+                                </article>
+
+                                <article class="panel">
+                                        <div class="panel__header">
+                                                <h2>Active incidents</h2>
+                                                <span class="badge badge--warning">Live</span>
+                                        </div>
+                                        <div class="list">
+                                                {incidents.map((incident) => (
+                                                        <div class="list__item">
+                                                                <div>
+                                                                        <p class="list__title">{incident.id} · {incident.detail}</p>
+                                                                        <p class="list__meta">{incident.owner}</p>
+                                                                </div>
+                                                                <div class="list__status">
+                                                                        <span class:list={[
+                                                                                'pill',
+                                                                                incident.impact === 'Major' ? 'pill--alert' : 'pill--neutral',
+                                                                        ]}
+                                                                                >{incident.impact}</span
+                                                                        >
+                                                                        <p class="list__meta">{incident.status}</p>
+                                                                </div>
+                                                        </div>
+                                                ))}
+                                        </div>
+                                </article>
+                        </section>
+
+                        <section class="panel">
+                                <div class="panel__header">
+                                        <h2>Team priorities</h2>
+                                        <span class="badge">Execution</span>
+                                </div>
+                                <div class="priorities">
+                                        {priorities.map((priority) => (
+                                                <div class="priority">
+                                                        <div class="priority__info">
+                                                                <p class="priority__title">{priority.title}</p>
+                                                                <p class="priority__meta">{priority.owner} · ETA {priority.eta}</p>
+                                                        </div>
+                                                        <div class="priority__bar">
+                                                                <span style={{ width: `${priority.progress}%` }} />
+                                                        </div>
+                                                </div>
+                                        ))}
+                                </div>
+                        </section>
+                </main>
+                <Footer />
+        </body>
+</html>
+
+<style>
+        .dashboard {
+                width: min(1100px, calc(100% - 2em));
+                margin: auto;
+                padding: 2.5em 0 3em;
+        }
+
+        .dashboard__hero {
+                display: grid;
+                gap: 1rem;
+                grid-template-columns: 2fr 1fr;
+                align-items: start;
+                margin-bottom: 2rem;
+        }
+
+        .eyebrow {
+                text-transform: uppercase;
+                letter-spacing: 0.08em;
+                font-weight: 700;
+                color: rgb(var(--gray));
+                margin: 0 0 0.25rem;
+        }
+
+        .lede {
+                margin-top: 0.5rem;
+                color: rgb(var(--gray));
+        }
+
+        .hero__meta {
+                justify-self: end;
+                text-align: right;
+                color: rgb(var(--gray));
+        }
+
+        .hero__status {
+                margin: 0 0 0.5rem;
+        }
+
+        .hero__timestamp {
+                margin: 0;
+                font-size: 0.95rem;
+        }
+
+        .kpis {
+                display: grid;
+                gap: 1rem;
+                grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+                margin-bottom: 2rem;
+        }
+
+        .kpi-card {
+                background: white;
+                border-radius: 16px;
+                padding: 1.25rem;
+                box-shadow: var(--box-shadow);
+                border: 1px solid rgb(var(--gray-light));
+        }
+
+        .kpi-card__label {
+                margin: 0;
+                color: rgb(var(--gray));
+                font-size: 0.95rem;
+        }
+
+        .kpi-card__value {
+                margin: 0.35rem 0 0.15rem;
+                font-size: 2rem;
+                color: rgb(var(--black));
+        }
+
+        .kpi-card__change {
+                margin: 0;
+                color: rgb(var(--gray));
+                font-weight: 600;
+        }
+
+        .kpi-card--positive .kpi-card__change {
+                color: #0b8a42;
+        }
+
+        .kpi-card--neutral .kpi-card__change {
+                color: rgb(var(--gray));
+        }
+
+        .panel {
+                background: white;
+                border-radius: 16px;
+                padding: 1.5rem;
+                box-shadow: var(--box-shadow);
+                border: 1px solid rgb(var(--gray-light));
+                margin-bottom: 1.5rem;
+        }
+
+        .panel-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+                gap: 1rem;
+                margin-bottom: 1.5rem;
+        }
+
+        .panel__header {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                gap: 1rem;
+                margin-bottom: 1rem;
+        }
+
+        .badge {
+                background: rgba(var(--accent), 0.08);
+                color: var(--accent);
+                border-radius: 999px;
+                padding: 0.25rem 0.75rem;
+                font-weight: 700;
+                font-size: 0.9rem;
+        }
+
+        .badge--warning {
+                background: rgba(255, 153, 0, 0.15);
+                color: #b45b00;
+        }
+
+        .list {
+                display: flex;
+                flex-direction: column;
+                gap: 0.75rem;
+        }
+
+        .list__item {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                gap: 1rem;
+                padding: 0.75rem 0.5rem;
+                border-bottom: 1px solid rgb(var(--gray-light));
+        }
+
+        .list__item:last-child {
+                border-bottom: none;
+                padding-bottom: 0;
+        }
+
+        .list__item--alert {
+                background: rgba(255, 235, 229, 0.6);
+                border-radius: 8px;
+                padding: 0.75rem 0.75rem;
+        }
+
+        .list__title {
+                margin: 0;
+                font-weight: 700;
+        }
+
+        .list__meta {
+                margin: 0.2rem 0 0;
+                color: rgb(var(--gray));
+                font-size: 0.95rem;
+        }
+
+        .list__status {
+                text-align: right;
+        }
+
+        .pill {
+                display: inline-flex;
+                align-items: center;
+                padding: 0.15rem 0.65rem;
+                border-radius: 999px;
+                font-size: 0.9rem;
+                font-weight: 700;
+                background: rgb(var(--gray-light));
+                color: rgb(var(--gray-dark));
+        }
+
+        .pill--success {
+                background: rgba(11, 138, 66, 0.15);
+                color: #0b8a42;
+        }
+
+        .pill--neutral {
+                background: rgba(35, 55, 255, 0.12);
+                color: var(--accent);
+        }
+
+        .pill--alert {
+                background: rgba(255, 92, 58, 0.15);
+                color: #c32600;
+        }
+
+        .pill--healthy {
+                background: rgba(11, 138, 66, 0.15);
+                color: #0b8a42;
+                padding: 0.15rem 0.75rem;
+        }
+
+        .priorities {
+                display: flex;
+                flex-direction: column;
+                gap: 0.75rem;
+        }
+
+        .priority {
+                background: rgb(var(--gray-light));
+                border-radius: 10px;
+                padding: 0.75rem 1rem;
+        }
+
+        .priority__info {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                gap: 1rem;
+                margin-bottom: 0.6rem;
+        }
+
+        .priority__title {
+                margin: 0;
+                font-weight: 700;
+        }
+
+        .priority__meta {
+                margin: 0;
+                color: rgb(var(--gray));
+                font-size: 0.95rem;
+        }
+
+        .priority__bar {
+                width: 100%;
+                background: white;
+                border-radius: 999px;
+                height: 10px;
+                overflow: hidden;
+                border: 1px solid rgba(var(--gray), 0.2);
+        }
+
+        .priority__bar span {
+                display: block;
+                height: 100%;
+                background: linear-gradient(90deg, var(--accent), var(--accent-dark));
+        }
+
+        @media (max-width: 900px) {
+                .dashboard__hero {
+                        grid-template-columns: 1fr;
+                }
+
+                .hero__meta {
+                        justify-self: start;
+                        text-align: left;
+                }
+        }
+
+        @media (max-width: 640px) {
+                .priority__info {
+                        flex-direction: column;
+                        align-items: flex-start;
+                }
+
+                .list__item {
+                        flex-direction: column;
+                        align-items: flex-start;
+                }
+
+                .list__status {
+                        text-align: left;
+                        width: 100%;
+                }
+        }
+</style>
