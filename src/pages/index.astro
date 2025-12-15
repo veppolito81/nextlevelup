@@ -7,44 +7,152 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 
 <!doctype html>
 <html lang="en">
-	<head>
-		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-	</head>
-	<body>
-		<Header />
-		<main>
-			<h1>🧑‍🚀 Hello, Astronaut!</h1>
-			<p>
-				Welcome to the official <a href="https://astro.build/">Astro</a> blog starter template. This
-				template serves as a lightweight, minimally-styled starting point for anyone looking to build
-				a personal website, blog, or portfolio with Astro.
-			</p>
-			<p>
-				This template comes with a few integrations already configured in your
-				<code>astro.config.mjs</code> file. You can customize your setup with
-				<a href="https://astro.build/integrations">Astro Integrations</a> to add tools like Tailwind,
-				React, or Vue to your project.
-			</p>
-			<p>Here are a few ideas on how to get started with the template:</p>
-			<ul>
-				<li>Edit this page in <code>src/pages/index.astro</code></li>
-				<li>Edit the site header items in <code>src/components/Header.astro</code></li>
-				<li>Add your name to the footer in <code>src/components/Footer.astro</code></li>
-				<li>Check out the included blog posts in <code>src/content/blog/</code></li>
-				<li>Customize the blog post page layout in <code>src/layouts/BlogPost.astro</code></li>
-			</ul>
-			<p>
-				Have fun! If you get stuck, remember to <a href="https://docs.astro.build/"
-					>read the docs
-				</a> or <a href="https://astro.build/chat">join us on Discord</a> to ask questions.
-			</p>
-			<p>
-				Looking for a blog template with a bit more personality? Check out <a
-					href="https://github.com/Charca/astro-blog-template"
-					>astro-blog-template
-				</a> by <a href="https://twitter.com/Charca">Maxi Ferreira</a>.
-			</p>
-		</main>
-		<Footer />
-	</body>
+        <head>
+                <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+        </head>
+        <body>
+                <Header />
+                <main>
+                        <section>
+                                <p class="eyebrow">Jacksonville, Florida</p>
+                                <h1>Fast, Friendly Junk Removal You Can Trust</h1>
+                                <p>
+                                        We built this space to make clearing out clutter easier for Jacksonville neighbors. From
+                                        garage cleanouts to post-renovation debris, you deserve a local team that shows up on
+                                        time, treats your property with care, and leaves every space spotless. Junk Force 1
+                                        delivers exactly that.
+                                </p>
+                                <div class="cta-row">
+                                        <a class="primary" href="https://junkforce1.com/junk-removal-jacksonville-florida/" target="_blank" rel="noopener">Get a pickup with Junk Force 1</a>
+                                        <a class="ghost" href="/blog/junk-removal-jacksonville-florida/">See how to prepare</a>
+                                </div>
+                        </section>
+
+                        <section class="grid">
+                                <article>
+                                        <h2>Local expertise</h2>
+                                        <p>
+                                                Jacksonville traffic patterns, HOA rules, and building access can slow down a job.
+                                                Junk Force 1 crews live and work here, so they plan around local nuances to keep
+                                                pickups smooth.
+                                        </p>
+                                </article>
+                                <article>
+                                        <h2>Full-service removal</h2>
+                                        <p>
+                                                Furniture, appliances, yard waste, and contractor debris all get loaded, hauled, and
+                                                responsibly disposed of for you. No need to rent a truck or lift heavy items.
+                                        </p>
+                                </article>
+                                <article>
+                                        <h2>Clear pricing</h2>
+                                        <p>
+                                                Upfront volume-based pricing means you know the cost before anything goes on the
+                                                truck. Transparent quotes help you budget and avoid surprise fees.
+                                        </p>
+                                </article>
+                        </section>
+
+                        <section class="list">
+                                <h2>How to get the most from your pickup</h2>
+                                <ul>
+                                        <li>Group items by room so crews can load quickly without extra walkthroughs.</li>
+                                        <li>Keep pathways clear to reduce time on site and improve safety.</li>
+                                        <li>Set aside donations to ask about reuse and local recycling options.</li>
+                                        <li>Double-check attics, sheds, and closets before the truck arrives.</li>
+                                </ul>
+                        </section>
+
+                        <section class="card">
+                                <h2>Serving all of Jacksonville</h2>
+                                <p>
+                                        Whether you are in Riverside, San Marco, the Beaches, or up in Northside, Junk Force 1 can
+                                        handle single-item pickups and full property cleanouts. Schedule a time, approve the quote,
+                                        and enjoy same-day or next-day removal when availability allows.
+                                </p>
+                        </section>
+                </main>
+                <Footer />
+        </body>
 </html>
+
+<style>
+        main {
+                max-width: 960px;
+                margin: 0 auto;
+                padding: 2rem 1rem 4rem;
+                display: flex;
+                flex-direction: column;
+                gap: 2rem;
+        }
+        section {
+                background: white;
+                border-radius: 16px;
+                padding: 1.5rem;
+                box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
+        }
+        .grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+                gap: 1rem;
+        }
+        .grid article {
+                background: #f7f9fb;
+                border-radius: 12px;
+                padding: 1rem;
+        }
+        .list ul {
+                margin: 0.5rem 0 0;
+                padding-left: 1.25rem;
+        }
+        .list li {
+                margin-bottom: 0.5rem;
+        }
+        .card {
+                background: linear-gradient(135deg, #f4f8ff, #eef3ff);
+        }
+        .eyebrow {
+                text-transform: uppercase;
+                letter-spacing: 0.08em;
+                font-weight: 700;
+                color: rgb(var(--accent));
+                margin: 0 0 0.25rem;
+        }
+        h1 {
+                margin-top: 0;
+                font-size: clamp(2rem, 4vw, 2.75rem);
+        }
+        .cta-row {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 0.75rem;
+                margin-top: 1rem;
+        }
+        .cta-row a {
+                text-decoration: none;
+                border-radius: 999px;
+                padding: 0.75rem 1.5rem;
+                font-weight: 700;
+        }
+        .cta-row a.primary {
+                background: rgb(var(--accent));
+                color: white;
+        }
+        .cta-row a.ghost {
+                border: 2px solid rgb(var(--accent));
+                color: rgb(var(--accent));
+        }
+        @media (max-width: 640px) {
+                main {
+                        padding: 1.5rem 1rem 3rem;
+                }
+                .cta-row {
+                        flex-direction: column;
+                        align-items: flex-start;
+                }
+                .cta-row a {
+                        width: 100%;
+                        text-align: center;
+                }
+        }
+</style>
